@@ -8,6 +8,7 @@ using AutoMapper;
 using API.Helpers;
 using API.Middleware;
 using API.Extensions;
+using StackExchange.Redis;
 
 namespace API
 {
@@ -25,8 +26,8 @@ namespace API
         {
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
-            services.AddDbContext<StoreContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddApplicationServices();
+
+            services.AddApplicationServices(this.Configuration);
             services.AddSwaggerDocumentation();
         }
 
