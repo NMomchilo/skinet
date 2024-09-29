@@ -1,5 +1,6 @@
 using API.Errors;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 namespace API.Controllers
@@ -11,6 +12,13 @@ namespace API.Controllers
              : base(logger)
         {
             _context = context;
+        }
+
+        [HttpGet("testauth")]
+        [Authorize]
+        public ActionResult<string> GetSecretText()
+        {
+            return "secret stuff";
         }
 
         [HttpGet("notfound")]
