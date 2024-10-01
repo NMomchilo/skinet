@@ -9,6 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { BreadcrumbComponent, BreadcrumbItemDirective } from 'xng-breadcrumb';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -20,6 +21,7 @@ import { BreadcrumbComponent, BreadcrumbItemDirective } from 'xng-breadcrumb';
     BreadcrumbComponent,
     BreadcrumbItemDirective,
     BrowserAnimationsModule,
+    SharedModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
       preventDuplicates: true
