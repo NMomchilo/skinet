@@ -46,5 +46,21 @@ namespace Infrastructure.Data
         {
             return SpecificationEvaluator<T>.GetQuery(this.context.Set<T>().AsQueryable(), spec);
         }
+
+        public void Add(T entity)
+        {
+            this.context.Set<T>().Add(entity);// no async methods even though they are available
+        }
+
+        public void Update(T entity)
+        {
+            this.context.Set<T>().Attach(entity);
+            this.context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public void Delete(T entity)
+        {
+            this.context.Set<T>().Remove(entity);
+        }
     }
 }
