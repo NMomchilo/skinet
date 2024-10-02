@@ -8,7 +8,7 @@ import { IOrder } from '../../shared/models/order';
   styleUrl: './checkout-success.component.scss'
 })
 export class CheckoutSuccessComponent {
-  order!: IOrder;
+  order?: IOrder;
 
   constructor(private router: Router){
     const navigation = this.router.getCurrentNavigation();
@@ -17,5 +17,4 @@ export class CheckoutSuccessComponent {
       this.order = state as IOrder;
     }
   }
-
 }
