@@ -13,7 +13,7 @@ export class BasketSummaryComponent {
   @Output() remove = new EventEmitter<IBasketItem>();
   @Output() decrement = new EventEmitter<IBasketItem>();
   @Input() isBasket = true;
-  @Input() items: any | null[] = [];
+  @Input() items: any[] = [];
   @Input() isOrder = false;
   
   constructor() {}
