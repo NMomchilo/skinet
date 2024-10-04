@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../account/account.service';
 import { Observable } from 'rxjs';
-import { IBasketTotals } from '../shared/models/basket';
+import { IBasket, IBasketTotals } from '../shared/models/basket';
 import { BasketService } from '../basket/basket.service';
 
 @Component({
@@ -34,6 +34,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.basketTotal$ = this.basketService.basketTotal$;
     this.getAddressFormValues();
+    this.getDeliveryMethodValue();
   }
 
   getAddressFormValues(){
@@ -43,5 +44,13 @@ export class CheckoutComponent implements OnInit {
           this.checkoutForm.get('addressForm')?.patchValue(address);
       }
     });
+  }
+
+  getDeliveryMethodValue(){
+    const basket = this.basketService.getCurrentBasketValue() as IBasket;
+    if (basket.deliveryMethodId !== null){
+      var deliveryMethodId = basket.deliveryMethodId as number;
+      this.checkoutForm.get('deliveryForm')?.get('deliveryMethod')?.patchValue(deliveryMethodId.toString());
+    }
   }
 }

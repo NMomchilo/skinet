@@ -4,6 +4,7 @@
             <div class="d-grid">
                 <button 
                     (click)="onClick(i)"
+                    [disabled]="true"
                     [class.active]="selectedIndex === i"
                     class="nav-link  text-uppercase fw-bold col-12" style="padding: 1.20em;">
                     {{step.label}}<!-- :{{step.completed}} -->

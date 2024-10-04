@@ -19,15 +19,28 @@ export class BasketService {
 
   constructor(private http: HttpClient) { }
 
+  createPaymentItent(){
+    return this.http.post<IBasket>(this.baseUrl + 'payments/' + this.getCurrentBasketValue()?.id, {}).pipe(
+      map(basket =>{
+        this.basketSource.next(basket);
+      })
+    );
+  }
+
   setShippingPrice(deliveryMethod: IDeliveryMethod){
     this.shipping = deliveryMethod.price;
+    const basket = this.getCurrentBasketValue() as IBasket;
+    basket.deliveryMethodId = deliveryMethod.id;
+    basket.shippingPrice = deliveryMethod.price;
     this.calculateTotals();
+    this.setBasket(basket);
   }
 
   getBasket(id: string){
     return this.http.get<IBasket>(this.baseUrl + 'basket?id=' + id).subscribe({
       next: basket => {
         this.basketSource.next(basket);
+        this.shipping = basket.shippingPrice as number;
         this.calculateTotals();
       }
     });
