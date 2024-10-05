@@ -4,12 +4,13 @@ import { map, Observable, of, ReplaySubject } from 'rxjs';
 import { IUser } from '../shared/models/user';
 import { Router } from '@angular/router';
 import { IAddress } from '../shared/models/address';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  baseUrl = 'https://localhost:5001/api/';//environment.apiUrl;
+  baseUrl = environment.apiUrl;//'https://localhost:5001/api/';
   private currentUserSource = new ReplaySubject<IUser | null>(1);
   currentUser$ = this.currentUserSource.asObservable();
 

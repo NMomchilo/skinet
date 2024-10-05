@@ -10,7 +10,7 @@ import { IDeliveryMethod } from '../shared/models/deliveryMethod';
   providedIn: 'root'
 })
 export class BasketService {
-  baseUrl = 'https://localhost:5001/api/';//environment.apiUrl;
+  baseUrl = environment.apiUrl;//'https://localhost:5001/api/';
   private basketSource = new BehaviorSubject<IBasket | null>(null);
   basket$ = this.basketSource.asObservable();
   private basketTotalSource = new BehaviorSubject<IBasketTotals | null>(null);

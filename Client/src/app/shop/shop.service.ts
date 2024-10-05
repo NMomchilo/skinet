@@ -6,13 +6,13 @@ import { map, Observable, of } from 'rxjs';
 import { Brand } from '../shared/models/brand';
 import { ProductType } from '../shared/models/productType';
 import { ShopParams } from '../shared/models/shopParams';
-import { PagerComponent } from 'ngx-bootstrap/pagination';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
-  baseUrl = 'https://localhost:5001/api/';
+  baseUrl = environment.apiUrl;//'https://localhost:5001/api/'; 
   products: Product[] = [];
   brands: Brand[] = [];
   types: ProductType[] = [];
